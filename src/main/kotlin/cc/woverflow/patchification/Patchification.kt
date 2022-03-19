@@ -1,9 +1,9 @@
-package com.example.template
+package cc.woverflow.patchification
 
-import cc.woverflow.onecore.utils.Updater
 import cc.woverflow.onecore.utils.command
 import cc.woverflow.onecore.utils.openScreen
-import com.example.template.config.TemplateConfig
+import cc.woverflow.patchification.config.PatchificationConfig
+import cc.woverflow.patchification.config.VigilanceConfig
 import net.minecraft.client.Minecraft
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -11,12 +11,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import java.io.File
 
 @Mod(
-    modid = ForgeTemplate.ID,
-    name = ForgeTemplate.NAME,
-    version = ForgeTemplate.VER,
+    modid = Patchification.ID,
+    name = Patchification.NAME,
+    version = Patchification.VER,
     modLanguageAdapter = "gg.essential.api.utils.KotlinAdapter"
 )
-object ForgeTemplate {
+object Patchification {
 
     const val NAME = "@NAME@"
     const val VER = "@VER@"
@@ -27,15 +27,19 @@ object ForgeTemplate {
     @Mod.EventHandler
     fun onFMLPreInitialization(event: FMLPreInitializationEvent) {
         if (!modDir.exists()) modDir.mkdirs()
-        Updater.addToUpdater(event.sourceFile, NAME, ID, VER, "W-OVERFLOW/$ID")
     }
 
     @Mod.EventHandler
     fun onInitialization(event: FMLInitializationEvent) {
-        TemplateConfig.preload()
+        PatchificationConfig.preload()
         command(ID) {
             main {
-                TemplateConfig.openScreen()
+                PatchificationConfig.openScreen()
+            }
+        }
+        command("vigilance", aliases = arrayListOf("vigilant")) {
+            main {
+                VigilanceConfig.openScreen()
             }
         }
     }
