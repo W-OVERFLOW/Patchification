@@ -1,6 +1,7 @@
 package cc.woverflow.patchification.config
 
 import cc.woverflow.patchification.Patchification
+import gg.essential.universal.ChatColor
 import gg.essential.vigilance.Vigilant
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
@@ -8,6 +9,15 @@ import java.awt.Color
 import java.io.File
 
 object VigilanceConfig : Vigilant(File(Patchification.modDir, "vigilance.toml"), "Vigilance Config (from Patchification)") {
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Disable Default Background",
+        category = "Color Scheme",
+        description = "Disable the ${ChatColor.COLOR_CHAR}lMINECRAFT DEFAULT${ChatColor.COLOR_CHAR}r background. To fully remove the background transparency of the Background color must be set as well."
+    )
+    var disableBackground = false
+
     @Property(PropertyType.BUTTON, "Warning", category = "Color Scheme", subcategory = "Info", description = "This feature will NOT work without an internet connection!\nALL ISSUES RELATING TO THIS MUST GO TO https://woverflow.cc/discord")
     fun internetConnectionWarning() {
 

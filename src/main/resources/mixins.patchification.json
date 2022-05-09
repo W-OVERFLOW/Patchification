@@ -4,6 +4,7 @@
   "package": "cc.woverflow.patchification.mixin",
   "refmap": "mixins.${id}.refmap.json",
   "mixins": [
+    "GuiScreenMixin",
     "VigilancePaletteMixin"
   ],
   "verbose": true
